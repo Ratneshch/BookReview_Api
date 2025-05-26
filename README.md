@@ -26,7 +26,7 @@
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/Ratneshch/BookReview_Api.git
+   https://github.com/Ratneshch/BookReview_Api.git
    ```
 
 2. **Navigate into the project folder:**
