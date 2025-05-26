@@ -6,11 +6,11 @@
 
 ## Features
 
-- User registration and login with JWT.
-- Add,fetch all books, fetch book by ID.
-- Add, update, delete reviews per book.
-- Pagination, filtering, and search support.
-- Secure routes with authentication middleware.
+- User registration and login with JWT authentication
+- Add, fetch all books, fetch book by ID
+- Add, update, delete reviews per book
+- Pagination, filtering, and search support
+- Secure routes with authentication middleware
 
 ---
 
@@ -24,39 +24,38 @@
 
 ## Installation
 
-1. Clone the repo:
-
+1. **Clone the repository:**
    ```bash
    git clone https://github.com/Ratneshch/BookReview_Api.git
+   ```
 
-2. Navigate into project folder:
+2. **Navigate into the project folder:**
+   ```bash
+   cd BookReview_Api
+   ```
 
- ```bash
-cd BookReview_Api
+3. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-3. Install dependencies:
+4. **Create a `.env` file in the root directory and add the following:**
+   ```
+   PORT=your_port
+   MONGO_URI=your_mongodb_connection_string
+   JWT_SECRET=your_jwt_secret_key
+   ```
 
- ```bash
-npm install
-
-4. Create .env file:
-
- ```bash
-PORT=your_port
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret_key
-
-5.Start the server:
- ```bash
-npm start
+5. **Start the server:**
+   ```bash
+   npm start
+   ```
 
 ---
 
-
 ## Folder Structure
 
-The project directory is organized as follows:
-
+```
 book-review-api/
 ├── controllers/
 │   ├── authController.js
@@ -76,106 +75,109 @@ book-review-api/
 │   └── connectDB.js
 ├── .env
 └── server.js
-
+```
 
 ---
 
 ## Database Schema
 
-User :
-_id (ObjectId)
-name (String)
-email (String, unique)
-password (String, hashed)
+**User**
+- `_id` (ObjectId)
+- `name` (String)
+- `email` (String, unique)
+- `password` (String, hashed)
 
-Book :
-_id (ObjectId)
-title (String)
-author (String)
-genre (String)
-reviews (Array of ObjectId referencing Review)
+**Book**
+- `_id` (ObjectId)
+- `title` (String)
+- `author` (String)
+- `genre` (String)
+- `description` (String)
+- `reviews` (Array of ObjectId referencing Review)
 
-Review :
-_id (ObjectId)
-book (ObjectId referencing Book)
-user (ObjectId referencing User)
-rating (Number)
-comment (String)
-createdAt (Date)
+**Review**
+- `_id` (ObjectId)
+- `book` (ObjectId referencing Book)
+- `user` (ObjectId referencing User)
+- `rating` (Number)
+- `comment` (String)
+- `createdAt` (Date)
 
 ---
 
-## Example API Requests (Postman)
+## Example API Requests
 
-1. Register User :
-POST /api/register
-Headers: Content-Type: application/json
+### 1. Register User
+**POST** `/api/signup`  
+Headers: `Content-Type: application/json`  
 Body:
-json
+```json
 {
   "name": "John Doe",
   "email": "john@example.com",
   "password": "password123"
 }
+```
 
-2. Login User
-POST /api/login
-Headers: Content-Type: application/json
+### 2. Login User
+**POST** `/api/login`  
+Headers: `Content-Type: application/json`  
 Body:
-json
+```json
 {
   "email": "john@example.com",
   "password": "password123"
 }
-Response: Contains JWT token to be used in Authorization header.
+```
+_Response contains JWT token to be used Authorization header._
 
-3. Get All Books
-GET /api/books?page=1&limit=10
+### 3. Get All Books
+**GET** `/api/books?page=1&limit=10`  
 No authentication required.
 
-4. Get Book By ID
-GET /api/books/{bookId}
-Replace {bookId} with actual book ID.
+### 4. Get Book By ID
+**GET** `/api/books/{bookId}`  
+Replace `{bookId}` with actual book ID.  
 No authentication required.
 
-5. Add a Review (Authenticated)
-POST /api/books/{bookId}/reviews
-Replace {bookId} with actual book ID.
+### 5. Add a Review (Authenticated)
+**POST** `/api/books/{bookId}/reviews`  
+Replace `{bookId}` with actual book ID.  
 Headers:
-Content-Type: application/json
-Authorization: Bearer <JWT_TOKEN>
+- `Content-Type: application/json`
+- `Authorization: Bearer <JWT_TOKEN>`
+
 Body:
-json
+```json
 {
   "rating": 5,
   "comment": "Amazing read!"
 }
+```
 
-6. Update Review (Authenticated)
-PUT /api/reviews/{reviewId}
-Replace {reviewId} with actual review ID.
+### 6. Update Review (Authenticated)
+**PUT** `/api/reviews/{reviewId}`  
+Replace `{reviewId}` with actual review ID.  
 Headers:
-Content-Type: application/json
-Authorization: Bearer <JWT_TOKEN>
+- `Content-Type: application/json`
+- `Authorization: Bearer <JWT_TOKEN>`
+
 Body:
-json
+```json
 {
   "rating": 4,
   "comment": "Updated my review comment."
 }
+```
 
-7. Delete Review (Authenticated)
-DELETE /api/reviews/{reviewId}
-Replace {reviewId} with actual review ID.
+### 7. Delete Review (Authenticated)
+**DELETE** `/api/reviews/{reviewId}`  
+Replace `{reviewId}` with actual review ID.  
 Headers:
-Authorization: Bearer <JWT_TOKEN>
+- `Authorization: Bearer <JWT_TOKEN>`
 
 ---
 
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-
-
-
-
